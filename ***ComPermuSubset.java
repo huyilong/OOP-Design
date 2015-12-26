@@ -232,6 +232,48 @@ public class Solution {
     }
 }
 
+
+
+//combination sum 2 -- we need to pass i!!!!!
+public class Solution {
+    public List<List<Integer>> combinationSum2(int[] candidates, int target) {
+        List<List<Integer>> res = new ArrayList<List<Integer>>();
+        if(candidates == null || candidates.length == 0){
+            return res;
+        }
+        
+        List<Integer> sub = new ArrayList<>();
+        Arrays.sort(candidates);
+        boolean[] used = new boolean[candidates.length];
+        helper(res,sub, target, candidates, 0, used);
+        
+        return res;
+        
+    }
+    
+    private void helper(List<List<Integer>> res, List<Integer> sub, int target, int[] candidates, int pos, boolean[] used ){
+        if(target == 0){
+            res.add(new ArrayList<Integer>(sub));
+            return;
+        }
+        
+        for(int i=pos; i<candidates.length; i++){
+            if(i>0 && candidates[i-1] == candidates[i] && !used[i-1]){
+                continue;
+            }
+
+            //here we again need to check used!!!
+            if(!used[i]){
+                used[i] = true;
+                sub.add(candidates[i]);
+                helper(res,sub, target-candidates[i] , candidates, i, used);
+                sub.remove(sub.size()-1);
+                used[i] = false;
+            }
+            
+        }
+    }
+}
 /*
 
 will this change reflect in the ArrayList?
