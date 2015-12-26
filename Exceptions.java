@@ -19,6 +19,21 @@ No.	throw	throws
 5)	You cannot throw multiple exceptions.	You can declare multiple exceptions e.g.
 public void method()throws IOException,SQLException.
 
+Java throw example
+
+void m(){  
+throw new ArithmeticException("sorry");  
+}  
+Java throws example
+
+void m()throws ArithmeticException{  
+//method code  
+}  
+Java throw and throws example
+
+void m()throws ArithmeticException{  
+throw new ArithmeticException("sorry");  
+}  
 
 1) Checked Exception
 
