@@ -602,6 +602,8 @@ public class Solution {
 }
 
 
+
+
     public boolean isValidBST(TreeNode root) {
         //return isValid(root, Double.NEGATIVE_INFINITY, Double.POSITIVE_INFINITY);
         return isValid(root, Integer.MIN_VALUE, Integer.MAX_VALUE);

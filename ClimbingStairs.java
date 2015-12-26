@@ -58,7 +58,51 @@ public class Solution {
     }
 }
 
-    
+//counting primes
+
+public class Solution {
+    public int countPrimes(int n) {
+        
+        /*
+        Let's write down all of 12's factors:
+
+        2 × 6 = 12
+        3 × 4 = 12
+        4 × 3 = 12
+        6 × 2 = 12
+        As you can see, calculations of 4 × 3 and 6 × 2 are not necessary. Therefore, we only need to consider factors up to √n because, if n is divisible by some number p, then n = p × q and since p ≤ q, we could derive that p ≤ √n.*/
+        
+           boolean[] isPrime = new boolean[n];
+           
+           
+           for (int i = 2; i < n; i++) {
+              isPrime[i] = true;
+           }
+           
+           
+           // Loop's ending condition is i * i < n instead of i < sqrt(n)
+           // to avoid repeatedly calling an expensive function sqrt().
+           for (int i = 2; i * i < n; i++) {
+              if (!isPrime[i]) {
+                  //if itself is not a prime number we find the next one
+                  continue;
+              }
+              
+              for (int j = i * i; j < n; j += i) {
+                  //then all of the i*i and i*i + ki is not prime
+                 isPrime[j] = false;
+              }
+           }
+           int count = 0;
+           
+           
+           for (int i = 2; i < n; i++) {
+              if (isPrime[i]) count++;
+           }
+           return count;
+    }
+}
+
 
 但是递归程序一般都是太慢了，因为像Fibonacci问题一样，重复计算了很多分支，我们使用动态规划法填表，提高效率，程序也很简单，如下：
 [cpp] view plaincopyprint?在CODE上查看代码片派生到我的代码片
