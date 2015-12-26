@@ -1,3 +1,33 @@
+//rotate an array for a point
+
+//rotate array
+//bubble sort - O(1) space
+//just no extra space and we will swap the things again and again
+//as long as i<k which is the rotating point
+
+public class Solution {
+    public void rotate(int[] nums, int k) {
+        /*
+             Can we do this in O(1) space?
+            This solution is like a bubble sort.*/
+            
+        if(nums==null || nums.length == 0 || k<=0){
+            return;
+        }
+        
+        //here is the time complexity is O(K*N)  space o(1)
+        for(int i=0; i<k; i++){
+            //if will control how many times we bubble the things to after
+            for(int j = nums.length-1 ; j>0; j--){
+                //whenever want to swap and declare temp we must int!!!
+                int temp = nums[j];
+                nums[j] = nums[j-1];//here is why we need to j>0
+                nums[j-1] = temp;
+            }
+        }
+    }
+}
+
 
 //find turning point in dups
 public class Turn{
