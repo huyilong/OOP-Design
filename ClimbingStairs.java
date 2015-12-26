@@ -15,6 +15,51 @@ int climbStairsRecur(int n) {
         return climbStairsRecur(n-1) + climbStairsRecur(n-2);  
     }  
 
+public class Solution {
+    public int climbStairs(int n) {
+        // if(n == 1){
+        //     return 1;
+        // }
+        
+        // if(n==2){
+        //     return 2;
+        // }
+        
+        // return climbStairs(n-1) + climbStairs(n-2);
+        if(n<3){
+            return n;
+        }
+        //相当于fibonacci数列问题，难点就是要会思维转换，转换成为递归求解问题，多训练就可以了。
+        //but the first two is not 0,1
+        //they became 2,3
+        // int prepre=1;
+        // int pre=2;
+        // int sum = -1;
+        // for(int i =3 ; i<=n; i++){
+        //     sum = pre+prepre;
+        //     prepre=pre;
+        //     pre = sum;
+        // }
+        
+        // return sum;
+        
+        //because we need 1 ... n 
+        //we need to new n+1
+        int[] dp = new int[n];
+        dp[0] = 1;
+        dp[1] = 2;
+        for(int i=2; i<n; i++){
+            dp[i] = dp[i-1] + dp[i-2];
+        }
+        
+        return dp[dp.length-1];
+        
+        
+    }
+}
+
+    
+
 但是递归程序一般都是太慢了，因为像Fibonacci问题一样，重复计算了很多分支，我们使用动态规划法填表，提高效率，程序也很简单，如下：
 [cpp] view plaincopyprint?在CODE上查看代码片派生到我的代码片
 int climbStairs(int n)  
