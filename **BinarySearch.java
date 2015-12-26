@@ -43,8 +43,8 @@ public int searchInsert(int[] A, int target) {
     return l;
 }
 
-注意以上实现方式有一个好处，就是当循环结束时，如果没有找到目标元素，
-那么l一定停在恰好比目标大的index上，r一定停在恰好比目标小的index上，所以个人比较推荐这种实现方式。
+	注意以上实现方式有一个好处，就是当循环结束时，如果没有找到目标元素，
+	那么l一定停在恰好比目标大的index上，r一定停在恰好比目标小的index上，所以个人比较推荐这种实现方式。
 
 
 
@@ -203,7 +203,7 @@ Given target = 3, return true.
 查找只需要先按行查找，定位出在哪一行之后再进行列查找即可，所以就是进行两次二分查找。
 时间复杂度是O(logm+logn)，空间上只需两个辅助变量，因而是O(1)，代码如下：
 
-Firstly we search vertically    logM
+Firstly we search vertically    logm
 Secondly we search horizontally  logN
 
 
@@ -248,18 +248,55 @@ public boolean searchMatrix(int[][] matrix, int target) {
 
 
 
+Challenge
+O(m+n) time and O(1) extra space
+
+Write an efficient algorithm that searches for a value in an m x n matrix, return the occurrence of it.
+
+This matrix has the following properties:
+
+    * Integers in each row are sorted from left to right.
+
+    * Integers in each column are sorted from up to bottom.
+
+    * No duplicate integers in each row or column.
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        //这道题是经典题, 我在微软和YELP的onsite和电面的时候都遇到了. 
+        //从右上角开始, 比较target 和 matrix[i][j]的值. 如果小于target, 则该行不可能有此数,  所以i++; 如果大于target, 则该列不可能有此数, 所以j--. 遇到边界则表明该矩阵不含target.
+        if(matrix.length ==0 || matrix == null){
+            return false;
+        }
+        
+        //search from the right up corner
+        //here we just need to traverse o(m+n)
+        int row =0;
+        int col = matrix[0].length-1;
+        
+        //inside the board
+        while(row<=matrix.length-1 && col >=0){
+            if(matrix[row][col] == target){
+                return true;
+            }else if(matrix[row][col] < target){
+                //could not be on this row
+                row++;
+            }else{
+                //could not be on this col
+                col--;
+            }
+        }
+        
+        //out of the search
+        return false;
+    }
+}
 
 
 
-
-
-
-
-
-
-
-
-
+这道题是经典题, 我在微软和YELP的onsite和电面的时候都遇到了. 
+从右上角开始, 比较target 和 matrix[i][j]的值. 如果小于target, 
+则该行不可能有此数,  所以i++; 如果大于target, 则该列不可能有此数, 
+所以j--. 遇到边界则表明该矩阵不含target.
 
 
 
