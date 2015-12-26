@@ -181,6 +181,83 @@ public int[] searchRange(int[] A, int target) {
 
 
 
+//Search a 2D Matrix
+Write an efficient algorithm that searches for a value in an m x n matrix.
+ This matrix has the following properties:
+
+Integers in each row are sorted from left to right.
+The first integer of each row is greater than the last integer of the previous row.
+For example,
+
+Consider the following matrix:
+
+[
+  [1,   3,  5,  7],
+  [10, 11, 16, 20],
+  [23, 30, 34, 50]
+]
+Given target = 3, return true.
+
+
+这道题是二分查找Search Insert Position的题目，因为矩阵是行有序并且列有序，
+查找只需要先按行查找，定位出在哪一行之后再进行列查找即可，所以就是进行两次二分查找。
+时间复杂度是O(logm+logn)，空间上只需两个辅助变量，因而是O(1)，代码如下：
+
+Firstly we search vertically    logM
+Secondly we search horizontally  logN
+
+
+public boolean searchMatrix(int[][] matrix, int target) {
+    if(matrix == null || matrix.length==0 || matrix[0].length==0)
+        return false;
+    int l = 0;
+    int r = matrix.length-1;
+    while(l<=r)
+    {
+        int mid = (l+r)/2;
+        if(matrix[mid][0] == target) return true;
+        if(matrix[mid][0] > target)
+        {
+            r = mid-1;
+        }
+        else
+        {
+            l = mid+1;
+        }
+    }
+    int row = r;
+    if(row<0)
+        return false;
+    l = 0;
+    r = matrix[0].length-1;
+    while(l<=r)
+    {
+        int mid = (l+r)/2;
+        if(matrix[row][mid] == target) return true;
+        if(matrix[row][mid] > target)
+        {
+            r = mid-1;
+        }
+        else
+        {
+            l = mid+1;
+        }
+    }   
+    return false;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
