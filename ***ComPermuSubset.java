@@ -1,4 +1,8 @@
 //subset 1
+
+
+Combination 
+
 递归解决。
 
 1. 先对数组进行排序。
@@ -70,7 +74,8 @@ public class Solution {
     }
 }
 
-//permutation 1 -- permutation we do not need pos every time start from 0
+//permutation 1 -- permutation we need pos every time start from 0
+//because there is no order specified
 public class Solution {
     public List<List<Integer>> permute(int[] nums) {
         
