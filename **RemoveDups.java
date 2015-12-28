@@ -8,7 +8,7 @@ General way:
 as scanner since the original head could be tracked by dummy.next
 3/ for arrays -- using two pointers we will create a newnew index for the 
 newnew array and another one to scan the old array - only care about non-zeros/dups
-
+4/ for returning length -- we need to return index+1  -- do not forget to add 1
 
 
 /**
