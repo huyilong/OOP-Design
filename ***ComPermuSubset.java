@@ -1,5 +1,35 @@
 //subset 1
+递归解决。
 
+1. 先对数组进行排序。
+
+2. 在set中依次取一个数字出来即可，因为我们保持升序，所以不需要取当前Index之前的数字。
+
+
+ 1 public class Solution {
+ 2     public List<List<Integer>> subsets(int[] S) {
+ 3         List<List<Integer>> ret = new ArrayList<List<Integer>>();
+ 4         if (S == null) {
+ 5             return ret;
+ 6         }
+ 7         //we need to sort the array at first to make sure the final resort is the ascending.
+ 8         Arrays.sort(S);
+ 9         
+10         dfs(S, 0, new ArrayList<Integer> (), ret);
+11         
+12         return ret;
+13     }
+14     
+15     public void dfs(int[] S, int index, List<Integer> path, List<List<Integer>> ret) {
+16         ret.add(new ArrayList<Integer>(path));
+17         
+18         for (int i = index; i < S.length; i++) {
+19             path.add(S[i]);
+20             dfs(S, i + 1, path, ret);
+21             path.remove(path.size() - 1);
+22         }
+23     }
+24 }
 
 //subset 2
 public class Solution {
