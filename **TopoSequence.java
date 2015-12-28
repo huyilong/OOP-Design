@@ -55,3 +55,49 @@ public class Solution {
 用邻接表存储图比较方便寻找入度为0的节点。
 
 
+
+
+因为只要返回任意一种合法的拓扑排序结果即可，所以只需在BFS过程中记录下来先后访问的节点即可。
+
+public class Solution {
+    public int[] findOrder(int numCourses, int[][] prerequisites) {
+        List<Set<Integer>> adjLists = new ArrayList<Set<Integer>>();
+        for (int i = 0; i < numCourses; i++) {
+            adjLists.add(new HashSet<Integer>());
+        }
+        
+        for (int i = 0; i < prerequisites.length; i++) {
+            adjLists.get(prerequisites[i][1]).add(prerequisites[i][0]);
+        }
+        
+        int[] indegrees = new int[numCourses];
+        for (int i = 0; i < numCourses; i++) {
+            for (int x : adjLists.get(i)) {
+                indegrees[x]++;
+            }
+        }
+        
+        Queue<Integer> queue = new LinkedList<Integer>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegrees[i] == 0) {
+                queue.offer(i);
+            }
+        }
+        
+        int[] res = new int[numCourses];
+        int count = 0;
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            for (int x : adjLists.get(cur)) {
+                indegrees[x]--;
+                if (indegrees[x] == 0) {
+                    queue.offer(x);
+                }
+            }
+            res[count++] = cur;
+        }
+        
+        if (count == numCourses) return res;
+        return new int[0];
+    }
+}
