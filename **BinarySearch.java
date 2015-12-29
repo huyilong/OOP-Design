@@ -362,6 +362,41 @@ public class Solution {
 
 
 
+
+
+/* The isBadVersion API is defined in the parent class VersionControl.
+      boolean isBadVersion(int version); */
+
+public class Solution extends VersionControl {
+    public int firstBadVersion(int n) {
+        //You are given an API bool isBadVersion(version) which will return whether version is bad. Implement a function to find the first bad version. You should minimize the number of calls to the API.
+        if(n==1){
+            return 1;
+        }
+        
+        int left=1;
+        int right =n;
+        while(left+1<right){
+            int mid = (left+right)/2;
+            if(isBadVersion(mid)){
+                right = mid;
+            }else{
+                left = mid;
+            }
+            
+        }
+        
+        return isBadVersion(left) ? left:right;
+    }
+}
+
+
+
+
+
+
+
+
 //use two maps to implement the doubly linked list!!1
 //which is pretty similar to LRU -- this is two maps!!!
 
