@@ -1,3 +1,37 @@
+public static int indexOf(int[] a, int key) {
+        int lo = 0;
+        int hi = a.length - 1;
+        while (lo <= hi) {
+            // Key is in a[lo..hi] or not present.
+            int mid = lo + (hi - lo) / 2;
+            if      (key < a[mid]) hi = mid - 1;
+            else if (key > a[mid]) lo = mid + 1;
+            else return mid;
+        }
+        return -1;
+    }
+
+
+int binsearchrec(int len, int a[], int x) { 
+   return binsearchrec0(len, a, x, 0, LEN - 1);
+}
+
+int binsearchrec0(int len, int a[], int x,
+         int low, int high) {
+   int mid;
+   if (low > high) return -1; 
+   mid = (low + high)/2;
+   if (a[mid] == x) return mid;
+   else if (a[mid] < x)
+      return binsearchrec0(LEN, a, x, mid+1,high);
+   else // last possibility: a[mid] > x
+      return binsearchrec0(LEN, a, x, low, mid-1);
+}
+
+
+
+
+
 Search Insert Position
 
 
