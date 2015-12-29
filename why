@@ -1,0 +1,61 @@
+Sense of ownership
+Working in a startup, you will have a great sense of ownership. Partly because of the stocks you get, and partly because there are few people, and you just don't have enough people so you have to take responsibility. 
+
+In a big tech company,  usually you will have backup people for anything important, and mostly you will not really feel you are doing something important (though you might be in reality, but it becomes hard to wrap your head around the importance of your work because there are so many layers and indirection between your work and its impact)
+
+Learning (not completely pro-startup, read below!)
+This is something people get wrong in my opinion. Most people assume that there is a "fast learning pace" in startups. This is not necessarily true. It depends on what you want to learn.
+
+Startups will have a faster learning pace in terms of setting up stuff and getting things done quick and dirty. But, you will not be able to spend too much time on research or trying to develop your own ideas. There is too much work on the plate, always. You will learn how to set up a hadoop cluster and make it talk to your database or stream of data, but you will not have much time to dig deeper into hadoop, or understand the internal workings of it, or contribute to hadoop source code etc.
+
+Big tech companies, on the other hand, can afford to spare time for research and you will generally be able to find time to experiment with your own ideas. You could be working on a new machine learning model for spam detection for example, which won't be the case in a startup, unless it is a very niche startup specifically doing that.
+
+A startup will help you learn the challenges of turning your small scale solution to the big scale, but at an established company, you would be thinking about scale from the word go.
+
+A startup will help you learn the intricacies of the business, and might get you opportunities to talk to your customers and directly influence the direction of the company, which a big company cannot do for you.
+
+Working in a large company, you would learn the industry best practices first hand. Things will be organized. Every process will be streamlines for efficiency at scale. In a small company, you would be exposed to a lot of inefficiencies. This is also an opportunity, if you can spot the right time to fix the inefficiency.
+ 
+Leadership access
+At a startup, you would be directly working with the founders. At an established company, you will have to go through hoops to just meet your CEO (usually). Despite best intentions, there will be a lot of communication loss from the leadership to you, in terms of company direction, mission etc.
+
+Money
+Working in a startup, you might earn less but have a small shot at making a lot of money. At a big company, you will generally make more money, but you aren't retiring any time soon! But there are a lot of caveats in the "small shot at making a lot of money" scenario in a startup, which you should be aware of.
+
+Rules, regulations, processes
+Big companies need to have processes and protocols in place to keep the ship sailing smoothly. You might have to wait a week (more, sometimes), just to get a line of code in or to get a configuration change on a production box. You might have to do extra work to make sure your code will not break existing stuff (more unit tests, integration tests, metrics for alerting).
+
+Freedom (again, not strictly pro-startup)
+In a startup, you have the freedom to do things without many rules. You are focused to getting your company up and running and survive another quarter (day?).
+
+In a big company, you have freedom to go home at 5 if you plan the day well. You have freedom in the sense you will have company outings, more holidays, less headache in terms of operational support.
+
+Jack of all trades or master of a few?
+"Jack of all trades" kind of people are more useful at a startup, and big companies need people who are masters in one, or a few narrow specific tasks.
+
+A good balance between these extremes is well-funded new companies that are doing well, like say, companies that are still "startups" but have a good customer base already and might IPO in an year or two. The risks and downsides are much lower, and you still have a good shot at making good money.
+
+
+Big Company vs Startups
+
+Every Big Company was once a startup and the way how they built their brand and company matters.
+
+Pros of Startup:
+Knowledge expansion:
+A startup is a place where you will be treated for what you are capable of and the willingness, curiosity to explore new technologies, business strategies etc.,.
+
+Making mistakes:
+A startup is where you are allowed to make mistakes, fumble, learn from it and define the right process. 
+
+Owner
+
+
+1.
+My approach to solving this problem is to use dynamic programming. I create a one-dimensional array for using the dynamic programming. In order to reach position i, we must jump to i from positions i-D, i-D+1, .... i-1. Therefore, there are D number of ways to jump to position i, where DP[i]= the earliest time we can reach position i.
+With that being said, the best way to reach position i is selected from DP[i-D] to DP[i-1]. We have to find the min value from DP[i-D] to DP[i-1]. In other words, we have to find the minimum value in a sub-array of size D. Therefore, this problem can be reduced to the problem of finding the minimum value in a sliding window of size D in an array.
+
+
+2.
+
+ is a great fit for me because I am a self-motivated person and I really enjoy the fast-paced learning and working environment in your company. Also, the field that your company focus on -- big data is my favorite field. I have a pretty strong mathematics and logic skills and I really enjoy the process in dealing with data and finding out the underlying value by behind them digging into data. 
+The fast growth and the promising future of LiveRamp make me believe that working in such a company will be both exciting and rewarding. 

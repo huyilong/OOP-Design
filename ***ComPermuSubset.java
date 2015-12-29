@@ -325,3 +325,55 @@ What if I change the reference to this object to null? Does that mean that the o
 No, since the content of the original reference was copied when added to the list. (Keep in mind that it is the reference that is copied, not the object.)
 
 */
+
+
+public class Solution {
+    public List<List<String>> partition(String s) {
+        //again similar to permutations
+        //or we could possibly list all subset and then 
+        //brute-force to check whether each subset is palin
+        
+        //we need to change a little bit
+        List<List<String>> res = new ArrayList<List<String>>();
+        if(s.length()==0 || s==null){
+            return res;
+        }
+        List<String> sub = new ArrayList<>();
+        helper(res, sub, 0, s);//string s needs to be passed
+        
+        return res;
+        
+        
+    }
+    
+    private void helper(List<List<String>> res, List<String> sub, int start, String s){
+        if(start == s.length()){
+            res.add(new ArrayList<String>(sub));
+            return;
+        }
+        
+        //
+        for(int end = start+1; end<s.length(); end++ ){
+            String check = s.substring(start, end);
+            if(isPalin(check)){
+                sub.add(check);
+                
+                helper(res, sub, start+1, s);
+                
+                sub.remove(sub.size()-1);
+            }
+        }
+    }
+    
+    
+    private boolean isPalin(String s){
+        int len = s.length();
+        for(int i=0; i<len/2; i++){
+            if(s.charAt(i) != s.charAt(len-i-1)){
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
