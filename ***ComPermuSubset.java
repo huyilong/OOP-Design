@@ -1,11 +1,6 @@
 //subset 1
-递归解决。
-
 1. 先对数组进行排序。
-
 2. 在set中依次取一个数字出来即可，因为我们保持升序，所以不需要取当前Index之前的数字。
-
-
  1 public class Solution {
  2     public List<List<Integer>> subsets(int[] S) {
  3         List<List<Integer>> ret = new ArrayList<List<Integer>>();
@@ -176,8 +171,6 @@ public class Solution {
     }
 }
 
-
-
 //combinations -----  passing i+1 as the new start
 public class Solution {
     public List<List<Integer>> combine(int n, int k) {
@@ -188,10 +181,7 @@ public class Solution {
         List<Integer> sub = new ArrayList<>();
         
         helper(res, sub, n, k, 1);
-        return res;
-        
-        
-        
+        return res;  
     }
     
     private void helper(List<List<Integer>> res, List<Integer> sub, int n, int k, int start){
@@ -349,9 +339,7 @@ public class Solution {
             sb.append(keyboard[num].charAt(i));
             helper(digits, index+1 , sb, keyboard, res);
             sb.deleteCharAt(sb.length()-1);
-        }
-        
-        
+        } 
     }
 
 
