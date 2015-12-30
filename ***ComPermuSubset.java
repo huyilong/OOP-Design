@@ -309,6 +309,61 @@ public class Solution {
         }
     }
 }
+
+public class Solution {
+    public List<String> letterCombinations(String digits) {
+        //combinations and permutations
+        //combinations and permutations
+        //combinations and permutations
+        
+        //this is a problem to get the combinations 
+        //we neeed to n digits, k chars --> time complexity O(k^n) which is also the space complexity np problem
+        
+        List<String> res = new ArrayList<>();
+        if(digits == null || digits.length() ==0){
+            return res;
+        }
+        //we could initialize the keyboard by using {} and = directly without "new" keyword
+        String[] keyboard={"","","abc","def","ghi","jkl","mno","pqrs","tuv","wxyz"};
+        StringBuilder sb = new StringBuilder();
+        
+        //int index=0;
+        helper(digits, 0, sb, keyboard, res);
+        
+        return res;
+        
+    }
+    
+    private void helper(String digits, int index, StringBuilder sb, String[] keyboard, List<String> res){
+        //the exit entry of the recursion
+        if(index == digits.length()){
+            res.add( sb.toString());
+            return;
+        }
+        
+        //we need to get the charater to digit
+        int num = digits.charAt(index) - '0';
+        
+        //this is just same as the "combinations and word break!!!!!!!!!!!!!!!!!!! --> combinations NP problem"
+        //or "permutations"  we could conclude with a mode ------  however
+        //permutations we just need to let int i = pos;
+        //instead of int i=0
+        // for(int i=0; i<digits.length(); i++){
+        //     sb.append(digits.charAt(i));
+        //     helper(digits, index+1 , sb, keyboard, res);
+        //     sb.remove()
+        // }
+        //we need to be careful!!!!!!!!!!!
+        for(int i=0; i<keyboard[num].length(); i++){
+            sb.append(keyboard[num].charAt(i));
+            helper(digits, index+1 , sb, keyboard, res);
+            sb.deleteCharAt(sb.length()-1);
+        }
+        
+        
+    }
+
+
 /*
 
 will this change reflect in the ArrayList?
