@@ -1,8 +1,4 @@
 //subset 1
-
-
-Combination 
-
 递归解决。
 
 1. 先对数组进行排序。
@@ -99,8 +95,7 @@ public class Solution {
             //because permutations we are not just using the number after the current pos
             //therefore every time we are starting from 0
             //and therefore we need to check whether sub has already contained the current pos
-            //we cannot use one number multiple times
-            
+            //we cannot use one number multiple times  
             
             //or if we need to be more strict -- there are dups in the tuple
             //we need to pass an array of used boolean
@@ -119,10 +114,6 @@ public class Solution {
     }
         
 }
-
-
-
-
 //permutation 2
 public class Solution {
     public List<List<Integer>> permuteUnique(int[] nums) {
@@ -369,12 +360,8 @@ public class Solution {
 will this change reflect in the ArrayList?
 Yes, since you added a reference to the object in the list. The reference you added will still point to the same object, (which you modified).
 
-
-
 or when I add the object to the ArrayList, Java creates a copy and add it to the ArrayList?
 No, it won't copy the object. (It will copy the reference to the object.)
-
-
 
 What if I change the reference to this object to null? Does that mean that the object in the ArrayList now null too?
 No, since the content of the original reference was copied when added to the list. (Keep in mind that it is the reference that is copied, not the object.)
