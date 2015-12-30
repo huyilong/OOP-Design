@@ -8,6 +8,38 @@ stop condition -- find one of them differs from str[0].charAt(0) -- random stand
 OR the index is already exceed the length of the shortest string among all these
 
 
+most common 2sum
+we store the distance to go as key and the index of result as value
+the index of second value -- distance is just the scanner i!!!
+public class Solution {
+    public int[] twoSum(int[] nums, int target) {
+    	HashMap<Integer, Integer> map = new HashMap<>();
+    	//distance from target --> index
+    	int[] res = new int[2];
+    	//two index
+
+    	for(int i=0 ; i<nums.length; i++){
+    		if(!map.containsKey(nums[i])){
+
+    			index and the res has a difference of 1!!!
+
+    			map.put(target - nums[i], i + 1);
+    		}else{
+    			res[0] = map.get(nums[i]);
+    			res[1] = i +1;
+
+    			break!!!;
+
+    		}
+
+    	}
+
+    	return res;
+    }
+}
+
+
+
 3 sum --- we need to sort the array!!!! so that we could use left++/right--;
 i =0 -- n 
 left=i+1
