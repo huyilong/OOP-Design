@@ -28,13 +28,7 @@ int binsearchrec0(int len, int a[], int x,
       return binsearchrec0(LEN, a, x, low, mid-1);
 }
 
-
-
-
-
 Search Insert Position
-
-
 ///Binary Search!!!!! O(logN) and must be sorted beforehand!!!!
 
 Given a sorted array and a target value, return the index if the target is found. 
@@ -79,8 +73,6 @@ public int searchInsert(int[] A, int target) {
 
 	注意以上实现方式有一个好处，就是当循环结束时，如果没有找到目标元素，
 	那么l一定停在恰好比目标大的index上，r一定停在恰好比目标小的index上，所以个人比较推荐这种实现方式。
-
-
 
 
 Given a sorted array of integers, find the starting and ending position of a given target value.
@@ -143,7 +135,6 @@ public int[] searchRange(int[] A, int target) {
     }
     return res;
 }
-
 
 
 /////or we can do sth like this
