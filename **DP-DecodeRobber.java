@@ -486,6 +486,54 @@ public class Solution {
     }
 }
 
+public class NumArray {
+    private int[] sum;
+    
+    public NumArray(int[] nums) {
+        //sum[i] denotes sum(nums[0], …, nums[i – 1])
+        sum = new int[nums.length + 1];
+        for (int i = 1; i <= nums.length; i++) {
+            sum[i] = sum[i - 1] + nums[i - 1];
+        }
+    }
+
+    public int sumRange(int i, int j) {
+        return sum[j + 1] - sum[i]; 
+    }
+}
+
+
+// Your NumArray object will be instantiated and called as such:
+// NumArray numArray = new NumArray(nums);
+// numArray.sumRange(0, 1);
+// numArray.sumRange(1, 2);
+
+
+public class NumMatrix {
+    private int[][] sum;
+    public NumMatrix(int[][] matrix) {
+        if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+            return;
+        }
+        sum = new int[matrix.length + 1][matrix[0].length + 1];
+        for (int i = 1; i <= matrix.length; i++) {
+            for (int j = 1; j <= matrix[0].length; j++) {
+                sum[i][j] = sum[i - 1][j] + sum[i][j - 1] - sum[i - 1][j - 1] + matrix[i - 1][j - 1];
+            }
+        }
+    }
+
+    public int sumRegion(int row1, int col1, int row2, int col2) {
+         return sum[row2 + 1][col2 + 1] - sum[row2 + 1][col1] - sum[row1][col2 + 1] + sum[row1][col1];
+    }
+}
+
+
+// Your NumMatrix object will be instantiated and called as such:
+// NumMatrix numMatrix = new NumMatrix(matrix);
+// numMatrix.sumRegion(0, 1, 2, 3);
+// numMatrix.sumRegion(1, 2, 3, 4);
+
 public class Solution {
     public int numSquares(int n) {
         //任意一个正整数均可表示为4个整数的平方和，其实是可以表示为4个以内的平方数之和，那么就是说返回结果只有1,2,3或4其中的一个，首先我们将数字化简一下，由于一个数如果含有因子4，那么我们可以把4都去掉，并不影响结果，比如2和8,3和12等等，
