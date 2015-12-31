@@ -66,6 +66,56 @@ public class Solution {
     }
 }
 
+public class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        ///
+        //this is similar to delete the nth node from the end
+        //however rotate the array is using bubble sort
+        //when n=0  we do not need to make any changes
+        
+        if(head ==null|| head.next == null|| k==0){
+            return head;//for the list return head means return the list
+        }
+        
+        //if we need to count the list's length we need to control the head to be unchanged
+        ListNode fast = head, slow = head, count = head;
+        int len=0;
+        while(count !=null){
+            count = count.next;
+            len++;
+        }
+        
+        k=k%len;//we need to mod the number to get the real position
+        if(k==0){
+            return head;
+        }
+        
+        for(int i =0; i<k; i++){
+            //find the nth to the end
+            //!!!!!!!!
+            fast = fast.next;
+        }
+        
+        while(fast.next !=null){
+            //stop right before the node we want to delete/rotate/break
+            fast = fast.next;
+            slow = slow.next;
+        }
+        
+        // head = slow.next;
+        // slow.next =null;
+        
+        
+        //!!!!!!
+        ListNode newhead = slow.next;
+        fast.next = head;
+        slow.next = null;
+        
+        return newhead;
+        
+    }
+}
+
 
 
 Search in rotated array
