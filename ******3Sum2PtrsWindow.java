@@ -1,4 +1,49 @@
+For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
 public class Solution {
+    public List<String> summaryRanges(int[] nums) {
+        //两个指针 start, end.  如果nums[end+1] = nums[end]+1, 就移动end指针, 否则, 插入字符串nums[start]->nums[end]. 
+        List<String> res = new ArrayList<>();  
+        if(nums==null || nums.length<1) return  res;  
+        int s=0, e=0;  //start means s and end means e
+        
+        //s and e will create a window for the range
+        while(e<nums.length) {
+            //outside e<nums.length
+            //but inside we still use e+1<nums.length
+            if we allow dups to appear in the sorted array
+                we just need to change nums[e+1]==nums[e]+1 to  <= num+1
+
+            if(e+1<nums.length && nums[e+1]==nums[e]+1) {  
+                 e++;  
+            }else{
+                if(s==e) {  
+                    //only one element within the window
+                    //convert integer to string
+                    //using Integer.toString
+                    //Integer.parseInt
+                    res.add(Integer.toString(nums[s]));  
+                }else{
+                    //there are multiple elements within the window
+                    //we need to use -> now
+                    String str = nums[s] + "->" + nums[e];  
+                    res.add(str);  
+                }
+                
+                 ++e;  
+                 s=e;
+                 //because start is not pre
+                 //if it is pre
+                 //we need pre = cur
+                 //the do cur=cur.next
+                 //here we just need to do ++e and s=e
+                
+            }
+        }
+        return res;
+    }
+}
+
+ublic class Solution {
     public void nextPermutation(int[] nums) {
         //If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
         // rearranges numbers into the lexicographically next greater permutation of numbers.
