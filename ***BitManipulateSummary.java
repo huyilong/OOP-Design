@@ -79,7 +79,6 @@ Given a non-negative integer n representing the total number of bits in the code
 rint the sequence of gray code. A gray code sequence must begin with 0.
 
 For example, given n = 2, return [0,1,3,2]. Its gray code sequence is:
-
 00 - 0
 01 - 1
 11 - 3
