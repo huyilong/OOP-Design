@@ -1,6 +1,5 @@
 
 Implement an iterator to flatten a 2d vector.
-
 For example,
 Given 2d vector =
 
@@ -24,8 +23,6 @@ Common logic in two different places should be refactored into a common method.
 class Vector2D {
 	private Iterator<List<Integer>> row = null;
     private Iterator<Integer> col = null;
-
-    
     public Vector2D(List<List<Integer>> vec2d) {
         row = vec2d.iterator();
         if(row.hasNext())
@@ -52,8 +49,6 @@ class Vector2D {
             return false;
         }
     }
-    
-    
 }
 
 /**
@@ -66,9 +61,6 @@ class Vector2D {
 // https://docs.oracle.com/javase/8/docs/api/java/util/Iterator.html
 class PeekingIterator implements Iterator<Integer> {
     //Here is an example. Assume that the iterator is initialized to the beginning of the list: [1, 2, 3].
-    
-    
-    
     private Iterator<Integer> iter = null; 
     private int nextValue = 0;  
     //we need a end variable to make sure it is not end right now
@@ -262,9 +254,7 @@ public class Codec {
          
          helper1(s, root);
          return s.toString();
-    }
-    
-    
+    }   
     public void helper1(StringBuilder s, TreeNode n){
         if(n==null){
             s.append("#,");
