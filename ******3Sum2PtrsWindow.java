@@ -1,3 +1,42 @@
+Yes, an abstract class can have a constructor. Consider this:
+
+abstract class Product { 
+    int multiplyBy;
+    public Product( int multiplyBy ) {
+        this.multiplyBy = multiplyBy;
+    }
+
+    public int mutiply(int val) {
+       return multiplyBy * val;
+    }
+}
+
+class TimesTwo extends Product {
+    public TimesTwo() {
+        super(2);
+    }
+}
+
+class TimesWhat extends Product {
+    public TimesWhat(int what) {
+        super(what);
+    }
+}
+
+super() calls the parent constructor with no arguments.
+
+It can be used also with arguments. I.e. super(argument1) and it will call the constructor that accepts 1 parameter of the type of argument1 (if exists).
+
+Also it can be used to call methods from the parent. I.e. super.aMethod()
+
+
+The superclass Product is abstract and has a constructor. 
+The concrete class TimesTwo has a constructor that just hardcodes the value 2. 
+The concrete class TimesWhat has a constructor that allows the caller to specify the value.
+
+Abstract constructors will frequently be used to enforce class 
+constraints or invariants such as the minimum fields required to setup the class.
+
 For example, given [0,1,2,4,5,7], return ["0->2","4->5","7"].
 public class Solution {
     public List<String> summaryRanges(int[] nums) {
@@ -43,7 +82,130 @@ public class Solution {
     }
 }
 
-ublic class Solution {
+Given a sorted integer array where the range of elements are [lower, upper] inclusive, return its missing ranges.
+For example, given [0, 1, 3, 50, 75], lower = 0 and upper = 99, 
+return ["2", "4->49", "51->74", "76->99"].
+
+public class Solution {
+    public List<String> findMissingRanges(int[] A, int lower, int upper) {
+        if(A==null) return null;
+        List<String> res = new ArrayList<String>();
+        for(int i=0; i<A.length; i++) {
+            while(i<A.length && A[i] == lower ) {
+                lower++; 
+                i++;
+            } 
+            if(i>=A.length) {
+                break;
+            }
+            if(A[i] == lower+1) {
+                res.add(String.valueOf(lower));
+            } else {
+                res.add("" + lower + "->" + (A[i]-1) );
+            }
+            lower = A[i] + 1;
+        }
+        
+        if(lower == upper) {
+            res.add(String.valueOf(lower));
+        } else if(lower < upper ){
+            res.add("" + lower + "->" + upper );
+        }
+        return res;
+    }
+}
+
+Runtime: O(n) — Moore voting algorithm: 
+Assume majority element always exists
+We maintain a current candidate and a counter initialized to 0. 
+As we iterate the array, we look at the current element x:
+If the counter is 0, we set the current candidate to x and the counter to 1.
+If the counter is not 0, we increment or decrement the counter based on 
+whether x is the current candidate.
+
+public int majorityElement(int[] nums) {
+    int result = 0, count = 0;
+ 
+    for(int i = 0; i<nums.length; i++ ) {
+        if(count == 0){
+            result = nums[ i ];
+            count = 1;
+        }else if(result == nums[i]){
+           count++;
+        }else{
+           count--;
+        }
+    }
+ 
+    return result;
+}
+
+public class Solution {
+    public int majorityElement(int[] num) {
+        int n = num.length;
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        for (int elem : num) {
+            if (map.containsKey(elem)) {
+                map.put(elem, map.get(elem)+1);
+            }
+            else {
+                map.put(elem, 1);
+            }
+        }
+        for (int item : map.keySet()) {
+            if (map.get(item) > n/2) {
+                return item;
+            }
+        }
+        return -1;
+    }
+}
+
+public class Solution {
+    public List<Integer> majorityElement(int[] nums) {
+        List<Integer> res = new ArrayList<Integer>();
+        How many majority elements could it possibly have?
+        at most 2 because each bigger than 1/3
+
+        int m = 0, n = 0, cm = 0, cn = 0;
+        for (int a : nums) {
+            if (a == m) {
+                ++cm;
+            } else if (a == n) {
+                ++cn;
+            } else if (cm == 0) {
+                m = a;
+                cm = 1;
+            } else if (cn == 0) {
+                n = a;
+                cn = 1;
+            } else {
+                --cm;
+                --cn;
+            }
+        }
+
+        cm = cn = 0;
+        for (int a : nums){
+            if (a == m) {
+                ++cm;
+            } else if (a == n) {
+                ++cn;
+            }
+        }
+
+        if (cm > nums.length / 3) {
+            res.add(m);
+        }
+        if (cn > nums.length / 3) {
+            res.add(n);
+        }
+
+        return res;
+    }
+}
+
+public class Solution {
     public void nextPermutation(int[] nums) {
         //If such arrangement is not possible, it must rearrange it as the lowest possible order (ie, sorted in ascending order).
         // rearranges numbers into the lexicographically next greater permutation of numbers.
@@ -662,3 +824,18 @@ public boolean isSubtree(Node n1, Node n2) {
     if (n1 == null) return false;
     return equals(n1, n2) || isSubtree(n1.left, n2) || isSubtree(n1.right, n2);
 }
+
+
+Number of 1 Bits 位1的个数
+class Solution {
+public:
+    int hammingWeight(uint32_t n) {
+        int res = 0;
+        for (int i = 0; i < 32; ++i) {
+            res += (n & 1);
+            n = n >> 1;
+        }
+        return res;
+    }
+};
+
