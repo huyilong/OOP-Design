@@ -221,3 +221,33 @@ public:
         return one;
     }
 };
+
+Given an array containing n distinct numbers taken from 0, 1, 2, ..., n, find the one that is missing from the array.
+
+For example,
+Given nums = [0, 1, 3] return 2.
+
+Note:
+Your algorithm should run in linear runtime complexity. Could you implement it using only constant extra space complexity?
+
+这题还有一种解法，使用位操作Bit Manipulation来解的，用到了异或操作的特性，
+相似的题目有Single Number 单独的数字, Single Number II 单独的数字之二和Single Number III 
+单独的数字之三。那么思路是既然0到n之间少了一个数，我们将这个少了一个数的数组 & 0到n之间完整的数组
+异或一下，那么相同的数字都变为0了，剩下的就是少了的那个数字了，参加代码如下：
+
+take this missing array ^ the complete array
+the remaining result is the missing one because all equal ones are 0
+
+class Solution {
+public:
+    int missingNumber(vector<int>& nums) {
+        int res = 0;
+        //because res is already 0
+        //even if it is missing 0 we could return 0
+        //so we just directly (i+1) ^ nums[i] make the complete array start i+1
+        for (int i = 0; i < nums.size(); ++i) {
+            res = res ^ (i + 1) ^ nums[i];
+        }
+        return res;
+    }
+};
