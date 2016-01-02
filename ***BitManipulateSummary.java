@@ -1,3 +1,34 @@
+public class Solution {
+    public int compareVersion(String version1, String version2) {
+        //The tricky part of the problem is to handle cases like 1.0 and 1. They should be equal.
+        //The period / dot is a special character in regex, you have to escape it either with a double backlash \\. or uses the Pattern.quote method.
+        //String test = "abc.def.123"; String[] output = test.split("\\.");
+        String[] v1s = version1.split("\\.");
+        String[] v2s = version2.split("\\.");
+        
+        int minLength = Math.min(v1s.length, v2s.length);
+        
+        int i = 0;
+        for(; i<minLength; i++) {
+            int i1 = Integer.parseInt(v1s[i]);
+            int i2 = Integer.parseInt(v2s[i]);
+            if(i1 > i2) return 1;
+            else if(i1 < i2) return -1;
+        }
+        //If version1 > version2 return 1, if version1 < version2 return -1, otherwise return 0.
+        int sum1 = 0;
+        for(int j=0; j<v1s.length; j++) {
+            sum1 += Integer.parseInt(v1s[j]);
+        }
+        int sum2 = 0;
+        for(int j=0; j<v2s.length; j++) {
+            sum2 += Integer.parseInt(v2s[j]);
+        }
+        if(sum1 == sum2) return 0;
+        return v1s.length > v2s.length? 1:-1;
+    }
+}
+
 Divide two integers without using multiplication, division and mod operator.
 最直观的方法是，用被除数逐个的减去除数，直到被除数小于0。这样做会超时。 
 那么如果每次不仅仅减去1个除数，计算速度就会增加，但是题目不能使用乘法，因此不能减去k*除数，
