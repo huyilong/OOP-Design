@@ -891,3 +891,33 @@ public ArrayList<Integer> getRow(int rowIndex) {
     }
     return result;
 }
+public class Solution {
+    public boolean searchMatrix(int[][] matrix, int target) {
+        //这道题是经典题, 我在微软和YELP的onsite和电面的时候都遇到了. 
+        //从右上角开始, 比较target 和 matrix[i][j]的值. 如果小于target, 则该行不可能有此数,  所以i++; 如果大于target, 则该列不可能有此数, 所以j--. 遇到边界则表明该矩阵不含target.
+        if(matrix.length ==0 || matrix == null){
+            return false;
+        }
+        
+        //search from the right up corner
+        //here we just need to traverse o(m+n)
+        int row =0;
+        int col = matrix[0].length-1;
+        
+        //inside the board
+        while(row<=matrix.length-1 && col >=0){
+            if(matrix[row][col] == target){
+                return true;
+            }else if(matrix[row][col] < target){
+                //could not be on this row
+                row++;
+            }else{
+                //could not be on this col
+                col--;
+            }
+        }
+        
+        //out of the search
+        return false;
+    }
+}
