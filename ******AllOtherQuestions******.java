@@ -37,7 +37,6 @@ public class Solution {
     }
     }
 }
-
 int[] m = new int[26] ---- ++m[s.charAt(i) - 'a']; ---  --m[t.charAt(i) - 'a']
 -----------------create a array of 26 int to be the hashmap of characters--------
 public class Solution {
@@ -76,8 +75,6 @@ public class Solution {
 Palindrome Permutation
 Given a string, determine if a permutation of the string could form a palindrome.
 For example, "code" -> False, "aab" -> True, "carerac" -> True.
-
-Hint:
 Consider the palindromes of odd vs even length. What difference do you notice? 
 Count the frequency of each character. If each character occurs even number of times, then it must be a palindrome. 
 How about character which occurs odd number of times? -- must <=1 such kind of num
@@ -124,11 +121,8 @@ public class Solution {
         return true;
     }
 }
-
-Permutation
 Given a string s, return all the palindromic permutations (without duplicates) of it. 
 Return an empty list if no palindromic permutation could be form.
-
 For example:
 Given s = "aabb", return ["abba", "baab"].
 Given s = "abc", return [].
@@ -144,12 +138,10 @@ public class Solution {
                 d.put(s.charAt(i), d.get(s.charAt(i)) + 1);
             else
                 d.put(s.charAt(i), 1);
-        }
-        
+        }      
         String candidate = "";
         String single = "";
-        boolean already = false;
-        
+        boolean already = false;  
         for(Character c : d.keySet()) {
             int num = d.get(c) / 2;
             for(int i = 0; i < num; i++)
@@ -169,8 +161,7 @@ public class Solution {
         }      
         recursion("", candidate, single, candidate.length(), results);
         return results;
-    }
-    
+    }   
     private void recursion(String left, String candidate, String single, int l, List<String> results) {
         if(left.length() == l) {
             String right = new StringBuffer(left).reverse().toString();
@@ -189,8 +180,7 @@ public class Solution {
         //两个指针 start, end.  如果nums[end+1] = nums[end]+1, 就移动end指针, 否则, 插入字符串nums[start]->nums[end]. 
         List<String> res = new ArrayList<>();  
         if(nums==null || nums.length<1) return  res;  
-        int s=0, e=0;  //start means s and end means e
-        
+        int s=0, e=0;  //start means s and end means e     
         //s and e will create a window for the range
         while(e<nums.length) {
             //outside e<nums.length
@@ -209,27 +199,16 @@ public class Solution {
                     //we need to use -> now
                     String str = nums[s] + "->" + nums[e];  
                     res.add(str);  
-                }
-                
-                 ++e;  
-                 s=e;
-                 //because start is not pre
-                 //if it is pre
-                 //we need pre = cur
-                 //the do cur=cur.next
-                 //here we just need to do ++e and s=e
-                
+                }          
+                 ++e; s=e;         
             }
         }
         return res;
     }
 }
-
-Examples:
 pattern = "abba", str = "dog cat cat dog" should return true.
 pattern = "abba", str = "dog cat cat fish" should return false.
 pattern = "aaaa", str = "dog cat cat dog" should return false.
-pattern = "abba", str = "dog dog dog dog" should return false.
 public class Solution {
     public boolean wordPattern(String pattern, String str) {
         String[] words = str.split(" ");
@@ -287,7 +266,6 @@ public class Solution {
         return max;
     }
 }
-
 Find The First Non Repeated Character In A String 
 public static Character firstNonRepeatedCharacter(String str){
         HashMap<Character,Integer>  characterhashtable= 
@@ -295,23 +273,13 @@ public static Character firstNonRepeatedCharacter(String str){
         int i,length ;
         Character c ;
         length= str.length();  // Scan string and build hash table
-        for (i=0;i < length;i++)
-        {
+        for (i=0;i < length;i++){
             c=str.charAt(i);
-            if(characterhashtable.containsKey(c))
-            {
-                // increment count corresponding to c
-                characterhashtable.put(  c ,  characterhashtable.get(c) +1 );
-            }
-            else
-            {
-                characterhashtable.put( c , 1 ) ;
-            }
+            if(characterhashtable.containsKey(c))  characterhashtable.put(  c ,  characterhashtable.get(c) +1 );
+            else   characterhashtable.put( c , 1 ) ;
         }
-        // Search characterhashtable in in order of string str
-        
-        for (i =0 ; i < length ; i++ )
-        {
+        // Search characterhashtable in in order of string str       
+        for (i =0 ; i < length ; i++ ){
             c= str.charAt(i);
             if( characterhashtable.get(c)  == 1 )
             return c;
@@ -323,7 +291,6 @@ public class Solution {
     public boolean isUgly(int num) {
         //Ugly numbers are positive numbers whose prime factors only include 2, 3, 5. For example, 6, 8 are ugly while 14 is not ugly since it includes another prime factor 7.
         //Note that 1 is typically treated as an ugly number.
-        
         if(num<=0){
             return false;
         }
@@ -351,9 +318,7 @@ public class Solution {
 (1) 1×2, 2×2, 3×2, 4×2, 5×2, …
 (2) 1×3, 2×3, 3×3, 4×3, 5×3, …
 (3) 1×5, 2×5, 3×5, 4×5, 5×5, …
-
-仔细观察上述三个列表，我们可以发现每个子列表都是一个丑陋数乘以2,
-3,5，而这些丑陋数的值就是从已经生成的序列中取出来的，我们每次都从三个列表中取出当前最小的那个加入序列，请参见代码如下：
+仔细观察上述三个列表，我们可以发现每个子列表都是一个丑陋数乘以2,3,5，而这些丑陋数的值就是从已经生成的序列中取出来的，我们每次都从三个列表中取出当前最小的那个加入序列，请参见代码如下：
 */
             if(n==1) return n;
             Queue<Long> q = new PriorityQueue<Long>();
@@ -378,23 +343,16 @@ public class Solution {
 Given 2*n + 2 numbers, every numbers occurs twice except two, find them.
 Example
 Given [1,2,2,3,4,4,5,3] return 1 and 5
-Challenge
-O(n) time, O(1) extra space.
 Thinking Process:
 The 2 exception must have this feature: a ^ b != 0, since they are different
 Still want to do 2n + 1 problem as in Single Number I, 
 then we need to split a and b into 2 groups and deal with two 2n+1 problems
-
 Assume c = a^b, there mush be a bit where a and b has the difference, so that bit in c is 1.
 Find this bit position and use it to split the group: 
 ff 
 */
 
 public class Solution {
-    /**
-     * @param A : An integer array
-     * @return : Two integers
-     */
     public List<Integer> singleNumberIII(int[] A) {
         if (A == null || A.length == 0) {
             return null;
@@ -496,12 +454,8 @@ public class Solution{
 		if(schedules == null || shcedules.length == 0){
 			return false;
 		}
-
-		//using self-defined comparator
 		//Arrays.sor(arr, cmp)
 		Comparator<Interval> cmp = new Comparator<Interval>(){
-			@override
-			//here we 
 			public int compare(Interval o1, Interval o2){
 				if(o1.start != o2.start){
 					//we firstly compare the starting time
@@ -512,9 +466,7 @@ public class Solution{
 				}
 			}
 		};
-
 		Arrays.sort(schedules, cmp);
-
 		//we are stating from 1 
 		for(int i=1;i<schedules.length; i++){
 			if(schedules[i].start < schedules[i-1].end){
@@ -604,8 +556,7 @@ class MinStack {
     //space complexity we just need to take consideration of the additional space
     //here we need an additional stack -- O(N)
     List<Integer> stack = new ArrayList<>();  
-    List<Integer> minStack = new ArrayList<>();
-    
+    List<Integer> minStack = new ArrayList<>();  
     public void push(int x) {
         //anyway we need to add into the original stack
         stack.add(x);  
@@ -640,7 +591,6 @@ class MinStack {
             return stack.get(stack.size()-1);
         }
     }
-
     public int getMin() {
         if(minStack.isEmpty()){
             return -1;
@@ -649,7 +599,6 @@ class MinStack {
         }
     }
 }
-
 public class Solution {
     public String simplifyPath(String path) {
         if(path.length() == 0 || path == null){
@@ -709,15 +658,12 @@ public class Stack{
 	public stackSize = 100;
 	int[] buffer = new int[stackSize * 3];
 	//use a single array of buffer to implement 3 stacks
-
 	//tops is an array of 3 numbers for each top index of the stack
 	int[] tops = {-1, -1, -1};//here we are initializing the array directly
-
 	public void push(int stackNum, int value) throws Exception{
 		if(tops[stackNum] >= stackSize){
 			throw new FullStackException();
 		}
-
 		//update the pointer for checking capacity
 		tops[stackNum]++;
 		//update the value at this position
@@ -725,7 +671,6 @@ public class Stack{
 		buffer[index] = value;
 
 	}
-
 	//for pop we just need to specify which stack to pop without value
 	public void pop(int stackNum) throws Exception{
 		if(isEmpty(stackNum)){
@@ -748,7 +693,6 @@ public class Stack{
 		int top_index = stackNum * stackSize + tops[stackNum];
 		return buffer[top_index];
 	}
-
 	public boolean isEmpty(int stackNum){
 		return tops[stackNum] == -1;
 	}
