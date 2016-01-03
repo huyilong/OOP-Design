@@ -906,3 +906,44 @@ public class Solution {
        return max;     
     }
 }
+public class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        List<List<Integer>> result = new ArrayList<List<Integer>>();
+	    if (numRows <= 0)
+		    return result;
+	    ArrayList<Integer> pre = new ArrayList<Integer>();
+	    pre.add(1);
+	    result.add(pre);
+	    for (int i = 2; i <= numRows; i++) {
+		    ArrayList<Integer> cur = new ArrayList<Integer>();
+	    	cur.add(1); //first
+	    	for (int j = 0; j < pre.size() - 1; j++) {
+		    	cur.add(pre.get(j) + pre.get(j + 1)); //middle
+	    	}
+		    cur.add(1);//last
+	    	result.add(cur);
+		    pre = cur;
+    	}
+	    return result;
+    }
+}
+	 [1],
+    [1,1],
+   [1,2,1],
+  [1,3,3,1],
+ [1,4,6,4,1]，其第i行恰好为 (a + b)^i 的展开系数
+public ArrayList<Integer> getRow(int rowIndex) {
+    ArrayList<Integer> result = new ArrayList<Integer>(rowIndex + 1);
+    for (int i = 0; i <= rowIndex; i++) {
+      result.add(0);
+    }
+    result.set(0, 1);//the head is always unchanged
+    for (int i = 1; i <= rowIndex; i++) {
+      result.set(i, 1);//always put the tail in /the end of the row postion = rowNumber/
+      for (int j = i - 1; j > 0; j--) {
+      	//we need to add from end to front!!! this is efficient
+        result.set(j, result.get(j) + result.get(j - 1));
+      }
+    }
+    return result;
+}
