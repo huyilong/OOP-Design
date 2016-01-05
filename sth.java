@@ -428,3 +428,53 @@ public class LinearShifting {
         a[j] = t;
     }
 
+Onsite : Find the depth of a binary tree, Given an array of size N and a random number M 
+(M &lt; N), generate an array of size M that contains random element from the main array 
+(this is in CTCI)
+
+What the difference between http post vs http get  
+1. Determine whether invalid {}, [], () exists in a string 
+2. Three buttons, one for coke, one for pepsi and one for randomly selection. 
+All of them are connected to the wrong one (pepsi botton connects to coke etc. ). 
+How do you figure out which button is which in three steps. 
+public class Solution {
+    public boolean isValid(String s) {
+        //left -> push
+        //right -> is Empty? pop() -- 2 places to check whether the stack is empty!!!  
+        if(s.length() == 0 ||s.length() ==1){
+            return false;
+            
+        }
+        Stack<Character> x = new Stack<>();
+        for(int i=0; i<s.length(); ++i){
+            // == and  '' not ""
+            //whenever meet with a left parenthesis we need to push into the stack
+            if(s.charAt(i) == '(' || s.charAt(i) == '[' ||s.charAt(i) == '{'){
+                x.push(s.charAt(i));
+            }else{
+                //we need to pop and check
+                if(x.isEmpty()){
+                    return false;
+                }
+                char top = x.pop();//pop we do not need to peek
+                if(s.charAt(i) == ')'){
+                    if(top !='('){
+                        return false;
+                    }
+                }
+                if(s.charAt(i) == ']'){
+                    if(top !='['){
+                        return false;
+                    }
+                }
+                if(s.charAt(i) == '}'){
+                    if(top !='{'){
+                        return false;
+                    }
+                }
+            }
+		}
+ //we need to check the stack empty
+        return x.isEmpty();         
+    }
+}    
