@@ -548,3 +548,36 @@ public class Solution {
         }
     }
 }
+
+public class Solution {
+    public String longestPalindrome(String s) {
+        String res = new String();
+        String temp = new String();
+        int len = s.length();
+        for(int i=0; i<len; i++){
+            for(int j=i+1; j<len; j++){
+                temp = s.substring(i,j);
+                if(temp.length() > res.length() && helper(temp)){
+                    res = temp;
+                }
+            }
+        }
+        
+        return res;
+    }
+    
+    private boolean helper(String s){
+        if(s == null || s.length() == 0){
+            return true;
+        }
+        int input_len = s.length();
+        for(int i=0; i<(input_len/2); i++){
+            if(s.charAt(i)!=s.charAt(input_len-i-1)){
+                return false;
+            }
+        }
+        
+        //
+        return true;
+    }
+}

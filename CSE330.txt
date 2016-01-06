@@ -1,0 +1,111 @@
+PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used open source general-purpose scripting language that is especially suited for web development and can be embedded into HTML.
+
+Instead of lots of commands to output HTML (as seen in C or Perl), PHP pages contain HTML with embedded code that does "something" (in this case, output "Hi, I'm a PHP script!"). The PHP code is enclosed in special start and end processing instructions <?php and ?> that allow you to jump into and out of "PHP mode."
+
+What distinguishes PHP from something like client-side JavaScript is that the code is executed on the server, generating HTML which is then sent to the client. The client would receive the results of running that script, but would not know what the underlying code was. You can even configure your web server to process all your HTML files with PHP, and then there's really no way that users can tell what you have up your sleeve.
+
+JavaScript is an object-oriented computer programming language commonly used to create interactive effects within web browsers.
+
+JavaScript is most commonly used as a client side scripting language. This means that JavaScript code is written into an HTML page. When a user requests an HTML page with JavaScript in it, the script is sent to the browser and it's up to the browser to do something with it.
+
+
+The best things in using PHP are that it is extremely simple for a newcomer, but offers many advanced features for a professional programmer. Don't be afraid reading the long list of PHP's features. You can jump in, in a short time, and start writing simple scripts in a few hours.
+----
+REST is web standards based architecture and uses HTTP Protocol for data communication. It revolves around resource where every component is a resource and a resource is accessed by a common interface using HTTP standard methods. REST was first introduced by Roy Fielding in 2000.
+
+In REST architecture, a REST Server simply provides access to resources and REST client accesses and presents the resources. Here each resource is identified by URIs/ global IDs. REST uses various representations to represent a resource like text, JSON and XML. Now a days JSON is the most popular format being used in web services.
+
+Following well known HTTP methods are commonly used in REST based architecture −
+
+GET − Provides a read only access to a resource.
+
+PUT − Used to create a new resource.
+
+DELETE − Ued to remove a resource.
+
+POST − Used to update a existing resource or create a new resource.
+
+OPTIONS − Used to get the supported operations on a resource.
+
+A web service is a collection of open protocols and standards used for exchanging data between applications or systems. Software applications written in various programming languages and running on various platforms can use web services to exchange data over computer networks like the Internet in a manner similar to inter-process communication on a single computer.
+Web services based on REST Architecture are known as RESTful web services. These web services use HTTP methods to implement the concept of REST architecture. A RESTful web service usually defines a URI, Uniform Resource Identifier a service, provides resource representation such as JSON and set of HTTP Methods.
+--------
+
+The Document Object Model (DOM) is an application programming interface (API) for valid HTML and well-formed XML documents. It defines the logical structure of documents and the way a document is accessed and manipulated. In the DOM specification, the term "document" is used in the broad sense - increasingly, XML is being used as a way of representing many different kinds of information that may be stored in diverse systems, and much of this would traditionally be seen as data rather than as documents. Nevertheless, XML presents this data as documents, and the DOM may be used to manage this data.
+
+With the Document Object Model, programmers can build documents, navigate their structure, and add, modify, or delete elements and content. Anything found in an HTML or XML document can be accessed, changed, deleted, or added using the Document Object Model, with a few exceptions - in particular, the DOM interfaces for the XML internal and external subsets have not yet been specified.
+
+-----------
+Ajax is a client-side script that communicates to and from a server/database without the need for a postback or a complete page refresh. The best definition I've read for Ajax is “the method of exchanging data with a server, and updating parts of a web page - without reloading the entire page.
+--------------
+There are many cloud and other distributed or cluster-based services available today that allow a set of tasks to be run concurrently on many processor cores, possibly hosted by multiple, distinct computers. Our Enginering School has such a cluster, and many of us could not do our research expeditiously or reliably without it.
+
+A more global and famous example of such a facility is Hadoop. From its beginnings, this service aimed to provide service that could scale from a single server to thousands of nodes. The service anticipates failure, in which case it can restart a computation on another node.
+
+The most common programming paradigm for services such as Hadoop is the MapReduce paradigm:
+
+A computation is decomposed into many copies of the same, or similar, computation These can be spread across multiple nodes for performance.
+At, or near, the end of the nodes' computations, their results may be aggregated in some fashion. This is called the reduce step.
+As an example, consider summing a million numbers:
+
+Map
+The million numbers are distributed among n nodes, so that each node receives approximately 1,000,000/n numbers to be summed.
+
+Reduce
+When a node has finished its work, it has a partial sum that must be added to all of the other nodes' sums to obtain the final answer. The reduce step therefore consists of obtaining and summing the nodes' partial sums. This can be done naively or cleverly.
+
+In this portion of the course, you will implement a form of such an infrastructure. The work will be limited to a single machine, but tasks can be mapped across multiple threads. The pedagogical goals of this lab are related to the following questions:
+How can work be distributed among a given set of Threads?
+How is the performance of a computation influenced by the number of Threads devoted to that computation?
+How do we implement reduce for these Threads?
+What races arise in implementing such a system?
+How do you maximize liveness (responsiveness of the system) while avoiding any deadlock?
+
+
+The Node class is important to this project, as each node acts to process the Tasks in its queue. The basic code for Node is straightforward and is given to you. The tricky part is to deploy the appropriate concurrency mechanisms so that the Node class performs reliably. Thos mechanisms include:
+Use of synchronized
+Use of guarded blocks (wait and notifyAll)
+
+Guarded Blocks
+
+Threads often have to coordinate their actions. The most common coordination idiom is the guarded block. Such a block begins by polling a condition that must be true before the block can proceed. There are a number of steps to follow in order to do this correctly.
+
+	
+public void addTask(Task<?> task) {
+		//only add the tasks into the node if the waiting tasks is less than the max size of queue
+		if(this.getNumWaiting() <  maxQueueSize){
+			this.queue.add(task);
+			publish("taskadded", task);
+		}else{
+			//if the queue is full, wait until there is room before adding task to the queue
+			while(this.getNumWaiting() == maxQueueSize)
+			{
+				Wrappers.wait(this);
+			}
+			//add task to the queue and publish it
+			this.queue.add(task);
+			publish("taskadded", task);
+		}
+	}
+
+public synchronized Task<?> findAndRemoveTask() {
+		//initialize the task variable with null
+		Task<?> ans = null;
+		//firstly we need to check if the returned value from getNumWaiting() method
+		if(this.getNumWaiting() > 0){
+			//if the queue has tasks when we first check it
+			//then we could directly remove this task
+			ans = queue.remove(0);
+		}else{
+			//if the queue is initially empty
+			//we need to wait until being notified from the getNumWaiting() method
+			while(this.getNumWaiting() == 0){
+				Wrappers.wait(this);
+			}
+			//when it is notified the queue has tasks
+			//then jump out of the loop to remove the task
+			ans = queue.remove(0);
+		}	
+		Wrappers.sleep(200);
+		return ans;
+	}
